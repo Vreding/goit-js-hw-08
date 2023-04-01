@@ -22,11 +22,15 @@ messageInput.value = storedState.message || '';
 form.addEventListener('submit', event => {
   event.preventDefault();
   const state = {
-    email: emailInput.value,
-    message: messageInput.value,
+    email: emailInput.value.trim(),
+    message: messageInput.value.trim(),
   };
-  console.log('Form state:', state);
-  localStorage.removeItem('feedback-form-state');
-  emailInput.value = '';
-  messageInput.value = '';
+  if (!messageInput.value.trim()) {
+    alert('Заполните поле с сообщением');
+  } else {
+    console.log('Form state:', state);
+    localStorage.removeItem('feedback-form-state');
+    emailInput.value = '';
+    messageInput.value = '';
+  }
 });
